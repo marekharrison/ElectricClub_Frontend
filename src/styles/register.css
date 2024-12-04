@@ -1,0 +1,19 @@
+.container {
+    background-image: url('../images/background1.jpg');
+    height: 100vh;
+}
+
+.header {
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    position: center;
+    color: white;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
