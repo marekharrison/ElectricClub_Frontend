@@ -20,6 +20,14 @@ function Vendor() {
         alert(`The password you entered was: ${password}`)
     }
 
+    async function submitForm() {
+
+        let url = ''
+        const form = new FormData()
+
+        const response = await fetch(url, { method: 'POST', body: form })
+    } 
+
     return (
         <div className="container">
             <div className="header">

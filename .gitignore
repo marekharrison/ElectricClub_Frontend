@@ -12,9 +12,7 @@
 /build
 
 # misc
-*.jpg
-*.png
-*.ico
+
 .vs/*
 .vscode/*
 !.vscode/extensions.json
