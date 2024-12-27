@@ -1,5 +1,4 @@
 .container {
-    
     height: 100vh;
 }
 
@@ -36,8 +35,8 @@ h2 {
     color: darkslategrey;
 }
 
-.footer {
-    position: absolute;
+.footer-registration {
+    position: relative;
     bottom: 0;
     height: 40px;
     margin-top: 40px;
@@ -48,5 +47,3 @@ h2 {
     color: darkslategrey;
     font: verdana;
 }
-
-

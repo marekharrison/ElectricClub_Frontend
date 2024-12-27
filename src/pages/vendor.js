@@ -1,6 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
-import '../styles/register.css';
+import '../styles/registration.css';
+import { Button } from '@mui/material';
+import { TextField } from '@mui/material';
+import logo from '../images/sun1.png';
 
 function Vendor() {
 
@@ -30,45 +33,100 @@ function Vendor() {
 
     return (
         <div className="container">
-            <div className="header">
-                <h1>Create Account</h1>
-            </div>
+            <header className="header-top">
+                <h1>Solar Electric Club</h1>
+                <div className="logo">
+                    <img src={logo} alt="image of sun" />
+                </div>
+            </header>
             <div className="body">
+                <h2>Please complete the following vendor registration form</h2> <br /> <br />
                 <form onSubmit={handleSubmit}>
                     <label>Company Name: <br />
-                        <input type="text" value={name} onChange={(e) => setName(e.target.value)} /> <br /> <br />
+                        <TextField type="text"
+                            value={name}
+                            required
+                            label="Required"
+                            variant="filled"
+                            style={{ maxWidth: '500px', maxHeight: '50px', minWidth: '500px', minHeight: '50px' }}
+                            onChange={(e) => setName(e.target.value)} /> <br /> <br />
                     </label>
                     <label>Address Line 1: <br />
-                        <input type="text" value={line1} onChange={(e) => setLine1(e.target.value)} /> <br /> <br />
+                        <TextField type="text"
+                            value={line1}
+                            required
+                            label="Required"
+                            variant="filled"
+                            style={{ maxWidth: '500px', maxHeight: '50px', minWidth: '500px', minHeight: '50px' }}
+                            onChange={(e) => setLine1(e.target.value)} /> <br /> <br />
                     </label>
                     <label>Address Line 2: <br />
-                        <input type="text" value={line2} onChange={(e) => setLine2(e.target.value)} /> <br /> <br />
+                        <TextField type="text"
+                            value={line2}
+                            label="Optional"
+                            variant="filled"
+                            style={{ maxWidth: '500px', maxHeight: '50px', minWidth: '500px', minHeight: '50px' }}
+                            onChange={(e) => setLine2(e.target.value)} /> <br /> <br />
                     </label>
                     <label>City: <br />
-                        <input type="text" value={city} onChange={(e) => setCity(e.target.value)} /> <br /> <br />
+                        <TextField type="text"
+                            value={city}
+                            required
+                            label="Required"
+                            variant="filled"
+                            style={{ maxWidth: '500px', maxHeight: '50px', minWidth: '500px', minHeight: '50px' }}
+                            onChange={(e) => setCity(e.target.value)} /> <br /> <br />
                     </label>Postal Code: <br />
-                    <input type="text" value={postal} onChange={(e) => setPostal(e.target.value)} /> <br /> <br />
+                    <TextField type="text"
+                        value={postal}
+                        required
+                        label="Required"
+                        variant="filled"
+                        style={{ maxWidth: '200px', maxHeight: '50px', minWidth: '200px', minHeight: '50px' }}
+                        onChange={(e) => setPostal(e.target.value)} /> <br /> <br />
                     <label>Country: <br />
                         <select value={country} onChange={(e) => setCountry(e.target.value)}>
                             <option value="United Kingdom">United Kingdom</option>
                         </select> <br /> <br />
                     </label>
-                    <label>E-Mail Address: <br />
-                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} /> <br /> <br />
-                    </label>
                     <label>Phone Number: <br />
-                        <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} /> <br /> <br />
+                        <TextField type="tel"
+                            value={phone}
+                            required
+                            label="Required"
+                            variant="filled"
+                            style={{ maxWidth: '300px', maxHeight: '50px', minWidth: '300px', minHeight: '50px' }}
+                            onChange={(e) => setPhone(e.target.value)} /> <br /> <br />
+                    </label>
+                    <label>E-Mail Address: <br />
+                        <TextField type="email"
+                            value={email}
+                            required
+                            label="Required"
+                            variant="filled"
+                            style={{ maxWidth: '500px', maxHeight: '50px', minWidth: '500px', minHeight: '50px' }}
+                            onChange={(e) => setEmail(e.target.value)} /> <br /> <br />
                     </label>
                     <label>Password: <br />
-                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} /> <br /> <br />
+                        <TextField type="password"
+                            value={password}
+                            required
+                            label="Required"
+                            variant="filled"
+                            style={{ maxWidth: '500px', maxHeight: '50px', minWidth: '500px', minHeight: '50px' }}
+                            onChange={(e) => setPassword(e.target.value)} /> <br /> <br />
                     </label>
                     <label>Number of Charging Stations: <br />
                         <input type="range" min="1" max="20" value={stations} onChange={(e) => setStations(e.target.value)} /> 
                     </label>
                     <label>{stations}</label> <br /> <br />
-                    <button type="submit">Register</button>
+                    <Button type="submit" color="primary" variant="contained">Register</Button>
                 </form>
             </div>
+
+            <footer className="footer-registration">
+                <h3 className="footer-text">&#169; 2024 The Solar Electric Club</h3>
+            </footer>
         </div>
     )
 

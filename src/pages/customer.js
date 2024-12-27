@@ -1,7 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/register.css'
+import '../styles/registration.css'
+import { Button } from '@mui/material';
+import { TextField } from '@mui/material';
+import logo from '../images/sun1.png';
 function Customer() {
 
     const [name, setName] = useState("")
@@ -17,26 +20,58 @@ function Customer() {
     return (
 
         <div className="container">
-            <div className="header">
-                <h1>Create Account</h1>
-            </div>
+            <header className="header-top">
+                <h1>Solar Electric Club</h1>
+                <div className="logo">
+                    <img src={logo} alt="image of sun" />
+                </div>
+            </header>
             <div className="body">
+                <h2>Please complete the following customer registration form</h2> <br /> <br />
                 <form onSubmit={handleSubmit}>
                     <label>Name: <br />
-                        <input type="text" value={name} onChange={(e) => setName(e.target.value)} /> <br /> <br />
-                    </label>
-                    <label>E-Mail Address: <br />
-                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} /> <br /> <br />
+                        <TextField type="text"
+                            value={name}
+                            required
+                            label="Required"
+                            variant="filled"
+                            style={{ maxWidth: '500px', maxHeight: '50px', minWidth: '500px', minHeight: '50px' }}
+                            onChange={(e) => setName(e.target.value)} /> <br /> <br />
                     </label>
                     <label>Phone Number: <br />
-                        <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} /> <br /> <br />
+                        <TextField type="tel"
+                            value={phone}
+                            required
+                            label="Required"
+                            variant="filled"
+                            style={{ maxWidth: '500px', maxHeight: '50px', minWidth: '500px', minHeight: '50px' }}
+                            onChange={(e) => setPhone(e.target.value)} /> <br /> <br />
+                    </label>
+                    <label>E-Mail Address: <br />
+                        <TextField type="email"
+                            value={email}
+                            required
+                            label="Required"
+                            variant="filled"
+                            style={{ maxWidth: '500px', maxHeight: '50px', minWidth: '500px', minHeight: '50px' }}
+                            onChange={(e) => setEmail(e.target.value)} /> <br /> <br />
                     </label>
                     <label>Password: <br />
-                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} /> <br /> <br />
+                        <TextField type="password"
+                            value={password}
+                            required
+                            label="Required"
+                            variant="filled"
+                            style={{ maxWidth: '500px', maxHeight: '50px', minWidth: '500px', minHeight: '50px' }}
+                            onChange={(e) => setPassword(e.target.value)} /> <br /> <br />
                     </label>
-                    <button type="submit">Register</button>
+                    <Button type="submit" color="primary" variant="contained">Register</Button>
                 </form>
             </div>
+
+            <footer className="footer-registration">
+                <h3 className="footer-text">&#169; 2024 The Solar Electric Club</h3>
+            </footer>
         </div>
     )
 

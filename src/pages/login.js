@@ -2,6 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/login.css'
+import { Button } from '@mui/material';
+import { TextField } from '@mui/material';
+import logo from '../images/sun1.png';
 function Login() {
 
 	const [email, setEmail] = useState("")
@@ -14,22 +17,43 @@ function Login() {
 
 	return (
 		<div className="container">
-			<div className="header">
-				<h1>Welcome Back</h1>
-			</div>
+			<header className="header-top">
+				<h1>Solar Electric Club</h1>
+				<div className="logo">
+					<img src={logo} alt="image of sun" />
+				</div>
+			</header>
+
 			<div className="body">
+				<h2>Please sign in to your account below</h2> <br /> <br />
 				<form onSubmit={handleSubmit}>
 					<label>E-Mail: <br />
-						<input type="email" value={email} onChange={(e) => setEmail(e.target.value)} /> <br /> <br />
+						<TextField type="email"
+							value={email}
+							required
+							label="Required"
+							variant="filled"
+							style={{ maxWidth: '500px', maxHeight: '50px', minWidth: '500px', minHeight: '50px' }}
+							onChange={(e) => setEmail(e.target.value)} /> <br /> <br />
 					</label>
 					<label>Password: <br />
-						<input type="password" value={password} onChange={(e) => setPassword(e.target.value)} /> <br /> <br />
+						<TextField type="password"
+							value={password}
+							required
+							label="Required"
+							variant="filled"
+							style={{ maxWidth: '500px', maxHeight: '50px', minWidth: '500px', minHeight: '50px' }}
+							onChange={(e) => setPassword(e.target.value)}/> <br /> <br />
 					</label>
 					<Link to='/home'>
-						<button type="submit">Log In</button>
+						<Button type="submit" color="primary" variant="contained">Log In</Button>
 					</Link>
 				</form>
 			</div>
+
+			<footer className="footer">
+				<h3 className="footer-text">&#169; 2024 The Solar Electric Club</h3>
+			</footer>
 		</div>
 		
 	)
