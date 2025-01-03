@@ -4,6 +4,9 @@ import '../styles/registration.css';
 import { Button } from '@mui/material';
 import { TextField } from '@mui/material';
 import logo from '../images/sun1.png';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {auth, db} from "./firebase";
+import {setDoc, doc} from "firebase/firestore";
 
 function Vendor() {
 
@@ -18,18 +21,44 @@ function Vendor() {
     const [phone, setPhone] = useState("")
     const [password, setPassword] = useState("")
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        alert(`The password you entered was: ${password}`)
-    }
+    const handleRegister = async (e) =>{
+        e.preventDefault();
+        try {
+            await createUserWithEmailAndPassword(auth, email, password);
+            const user = auth.currentUser;
+            console.log(user);
+            if(user){
+                await setDoc(doc(db,"Users",user.uid), {
+                    firstName : name,
+                    addressLine1 : line1,
+                    addressLine2 : line2,
+                    city: city,
+                    postCode: postal,
+                    country : country,
+                    numOfStations: stations,
+                    email: user.email,
+                    telephoneNumber: phone,
+                } )
+            }
+            console.log("Vendor registered successfully")
+        }  catch (error) {
+            console.log(error.message);
+            
+        }
+    };
 
-    async function submitForm() {
+  //  const handleSubmit = (event) => {
+    //    event.preventDefault();
+      //  alert(`The password you entered was: ${password}`)
+   // }
 
-        let url = ''
-        const form = new FormData()
+    //async function submitForm() {
 
-        const response = await fetch(url, { method: 'POST', body: form })
-    } 
+     //   let url = ''
+      //  const form = new FormData()
+
+       // const response = await fetch(url, { method: 'POST', body: form })
+  //  } 
 
     return (
         <div className="container">
@@ -41,7 +70,7 @@ function Vendor() {
             </header>
             <div className="body">
                 <h2>Please complete the following vendor registration form</h2> <br /> <br />
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleRegister}>
                     <label>Company Name: <br />
                         <TextField type="text"
                             value={name}

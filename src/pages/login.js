@@ -5,15 +5,30 @@ import '../styles/login.css'
 import { Button } from '@mui/material';
 import { TextField } from '@mui/material';
 import logo from '../images/sun1.png';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from './firebase';
+
 function Login() {
 
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		alert(`The password you entered was: ${password}`)
+	const handleSubmit = async(e) => {
+		e.preventDeafault();
+		try {
+			await signInWithEmailAndPassword(auth,email,password);
+			console.log("User logged in successfully");
+		} catch (error) {
+			
+		}
+
 	}
+
+
+	//const handleSubmit = (event) => {
+	//	event.preventDefault();
+	//	alert(`The password you entered was: ${password}`)
+	//}
 
 	return (
 		<div className="container">

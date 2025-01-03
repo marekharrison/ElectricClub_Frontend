@@ -1,3 +1,4 @@
+import {createUserWithEmailAndPassword} from "firebase/auth";
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -5,6 +6,9 @@ import '../styles/registration.css'
 import { Button } from '@mui/material';
 import { TextField } from '@mui/material';
 import logo from '../images/sun1.png';
+import {auth,db} from "./firebase";
+import {setDoc ,doc} from "firebase/firestore";
+
 function Customer() {
 
     const [name, setName] = useState("")
@@ -12,10 +16,30 @@ function Customer() {
     const [phone, setPhone] = useState("")
     const [password, setPassword] = useState("")
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        alert(`The password you entered was: ${password}`)
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        try {
+           await createUserWithEmailAndPassword(auth, email, password);
+           const user = auth.currentUser;
+           console.log(user);
+           if (user){
+            await setDoc(doc(db,"Users", user.uid), {
+                email:user.email,
+                firstName: name,
+                phoneNumber: phone,
+            });
+        }
+           console.log("User registered successfully")
+        } catch (error) {
+            console.log(error.message)
+        }
+
     }
+
+    //const handleSubmit = (event) => {
+      //  event.preventDefault();
+        //alert(`The password you entered was: ${password}`)
+    //}
 
     return (
 
@@ -28,7 +52,7 @@ function Customer() {
             </header>
             <div className="body">
                 <h2>Please complete the following customer registration form</h2> <br /> <br />
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleRegister}>
                     <label>Name: <br />
                         <TextField type="text"
                             value={name}
